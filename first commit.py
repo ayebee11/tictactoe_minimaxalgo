@@ -36,3 +36,15 @@ for i in range(3):
 for i in range(3):
     game_frame.grid_rowconfigure(i, weight=1)
     game_frame.grid_columnconfigure(i, weight=1)
+
+def make_move(button, row, col):
+    global current_player
+    if board[row][col] == "" and current_player == "X":
+        board[row][col] = "X"
+        button.config(text="X", state=tk.DISABLED, fg="blue")
+
+        if check_draw(board):
+            end_game("It's a draw!")
+            return
+        current_player = "O"
+        header_label.config(text="AI's Turn (O)", fg="green")
