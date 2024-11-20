@@ -66,3 +66,18 @@ def best_move(board):
                     best_score = score
                     move = (i, j)
     return move
+
+def check_winner(board):
+    # Logic for checking the winner
+    pass
+
+def check_draw(board):
+    return all(cell != "" for row in board for cell in row)
+
+def highlight_winner(cells):
+    for row, col in cells:
+        buttons[row][col].config(bg="yellow")
+
+def end_game(message):
+    messagebox.showinfo("Game Over", message)
+    root.destroy()
