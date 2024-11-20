@@ -81,3 +81,21 @@ def highlight_winner(cells):
 def end_game(message):
     messagebox.showinfo("Game Over", message)
     root.destroy()
+
+def ai_move():
+    global current_player
+    move = best_move(board)
+    if move:
+        row, col = move
+        board[row][col] = "O"
+        buttons[row][col].config(text="O", state=tk.DISABLED, fg="green")
+        winner, cells = check_winner(board)
+        if winner:
+            highlight_winner(cells)
+            end_game(f"{winner} wins!")
+            return
+        if check_draw(board):
+            end_game("It's a draw!")
+            return
+    current_player = "X"
+    header_label.config(text="Your Turn (X)", fg="blue")
