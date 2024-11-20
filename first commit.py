@@ -48,3 +48,21 @@ def make_move(button, row, col):
             return
         current_player = "O"
         header_label.config(text="AI's Turn (O)", fg="green")
+
+def minimax(board, depth, is_maximizing):
+    # Logic for AI decision-making
+    pass
+
+def best_move(board):
+    best_score = -float('inf')
+    move = None
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == "":
+                board[i][j] = "O"
+                score = minimax(board, 0, False)
+                board[i][j] = ""
+                if score > best_score:
+                    best_score = score
+                    move = (i, j)
+    return move
